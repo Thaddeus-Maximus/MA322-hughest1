@@ -7,7 +7,7 @@ function [xstar,fxstar,nitr,status]= ...
 Hughes_Secant(f,a,b,epsilon,maxitr,loud)
     nitr=0;   % Number of iterations
     status=1; % Assume failure
-    while nitr<maxitr && status
+    while nitr<=maxitr && status
       % Cache function values (because efficiencies)
       fa=feval(f,a);
       fb=feval(f,b);
