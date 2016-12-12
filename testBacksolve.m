@@ -1,7 +1,8 @@
-function testBacksolve(lastName)
+lastName='Hughes'
 
-tol = 10^-6;
-numTests = 10
+tol = 10^-2;
+numTests = 5000;
+errs=0;
 
 for tst = 1:numTests
    statType = round(3*rand(1)-0.5);
@@ -12,8 +13,9 @@ for tst = 1:numTests
       randNumRows = randNumCols + round(3*rand(1));
       randA = round(10*rand(randNumRows, randNumCols));
       randSol = round(4*rand(randNumCols,1)-2);
-      b = randA*randSol;
-      [L,U,p] = Holder_lu(randA);
+      b = randA*randSol
+      [L,U,p] = Holder_lu(randA)
+      b
    
       cmd1 = sprintf('[x1,s1] = %s_Backsolve(L,U,p,b)', lastName);
       cmd2 = sprintf('[x2,s2] = Holder_Backsolve(L,U,p,b)');
@@ -30,6 +32,9 @@ for tst = 1:numTests
          fprintf('Your code correctly solved LUx = b\n\n')
       else
          fprintf('Your code failed to solve LUx = b\n\n')
+         errs=errs+1;
+         fprintf('\n Press a key to continue \n\n')
+         pause
       end
    
       if tstSum2 < tol
@@ -45,8 +50,8 @@ for tst = 1:numTests
       randNumCols = randNumRows + round(3*rand(1)+1);
       randA = round(10*rand(randNumRows, randNumCols));
       randSol = round(4*rand(randNumCols,1)-2);
-      b = randA*randSol;
-      [L,U,p] = Holder_lu(randA);
+      b = randA*randSol
+      [L,U,p] = Holder_lu(randA)
    
       cmd1 = sprintf('[x1,s1] = %s_Backsolve(L,U,p,b)', lastName);
       cmd2 = sprintf('[x2,s2] = Holder_Backsolve(L,U,p,b)');
@@ -63,6 +68,9 @@ for tst = 1:numTests
          fprintf('Your code correctly solved LUx = b\n\n')
       else
          fprintf('Your code failed to solve LUx = b\n\n')
+         errs=errs+1;
+         fprintf('\n Press a key to continue \n\n')
+         pause
       end
       
       if tstSum2 < tol
@@ -77,9 +85,9 @@ for tst = 1:numTests
       randNumRows = randNumCols;
       randA = round(10*rand(randNumRows, randNumCols));
       linComb = round(4*rand(2,randNumCols)-2);
-      A = [randA; linComb*randA];
-      b = [randA*ones(randNumCols,1); 2+linComb*randA*ones(randNumCols,1)];
-      [L,U,p] = Holder_lu(A);
+      A = [randA; linComb*randA]
+      b = [randA*ones(randNumCols,1); 2+linComb*randA*ones(randNumCols,1)]
+      [L,U,p] = Holder_lu(A)
    
       cmd1 = sprintf('[x1,s1] = %s_Backsolve(L,U,p,b)', lastName);
       cmd2 = sprintf('[x2,s2] = Holder_Backsolve(L,U,p,b)');
@@ -93,6 +101,9 @@ for tst = 1:numTests
          fprintf('Your code correctly identified the inconsistency of LUx = b\n\n')
       else
          fprintf('Your code failed to identified the inconsistency of LUx = b\n\n')
+         errs=errs+1;
+         fprintf('\n Press a key to continue \n\n')
+         pause
       end
    
       if s2 == 2
@@ -103,7 +114,9 @@ for tst = 1:numTests
    
    end
 
-   fprintf('\n Press a key to continue \n\n')
-   pause
+   %fprintf('\n Press a key to continue \n\n')
+   %pause
+
 end
 
+fprintf('%d errors.\n', errs);
