@@ -1,19 +1,13 @@
+% Thaddeus Hughes
+% I pledge this is my code
+
 function [x,status]=Hughes_Backsolve(L,U,p,b)
     status=0;
     
-%     if size(U,1) > size(U,2)
-%         status=2;
-%         x=NaN
-%         return;
-%     end
-    %2 inconsistent
-    %1 consistent infinite sols 
     y=zeros(size(L,1),1);
     for i = 1:size(L,1)
         y(i)=(b(p(i)) - L(i,1:i-1)*y(1:i-1))/L(i,i);
     end
-    
-    y
     
     if size(U,2)>size(U,1)
         status=1;
