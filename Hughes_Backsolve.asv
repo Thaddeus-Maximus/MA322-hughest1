@@ -1,4 +1,0 @@
-function [x,status]=Backsolve(L,U,p,b)
-  y = zeros(size(L, 1), 1)
-  for i=1:size(L,1)
-      y(i)=

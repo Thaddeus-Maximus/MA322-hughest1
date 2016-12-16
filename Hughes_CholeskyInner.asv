@@ -1,0 +1,15 @@
+function [L,s] = Hughes_CholeskyInner(A)
+    tol = 1e-8;
+    [m n] = size(A);
+    if m~=n
+        L=NaN;
+        s=1;
+        return
+    end
+    for i=1:m
+        for j=1:m
+            if j == i
+                L(i,i)=sqrt(A(i,i)-L(i,1:j-1))
+            else
+                L(i,j)=(A(i,j)-
+end
