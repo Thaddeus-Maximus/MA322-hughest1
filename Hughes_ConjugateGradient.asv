@@ -1,0 +1,11 @@
+function [x, status] = Hughes_ConjugateGradient(Q, b, x, itrBnd, tol)
+    r = b - Q*x;
+    p = r;
+    k = 0;
+    for i=1:min(length(b), itrBnd)
+        alpha = r'*r/(P'*Q*P);
+        
+        x = x + delp
+    end
+    
+end

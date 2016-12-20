@@ -1,3 +1,6 @@
+% Thaddeus Hughes
+% I pledge this is my code
+
 function [L,s] = Hughes_CholeskyInner(A)
     tol = 1e-8;
     [m n] = size(A);
@@ -20,7 +23,7 @@ function [L,s] = Hughes_CholeskyInner(A)
             else
                 if L(j,j) == 0
                     L=NaN;
-                    s=2;
+                    s=1;
                     return
                 end
                 L(i,j) = (A(i,j)-L(i,1:j-1)*L(j,1:j-1)'  )/L(j,j);

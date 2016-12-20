@@ -26,6 +26,7 @@ for t = 0:numTests
       Q = eye(3);
       b = [0;1;0];
       x0 = [1;0;0];
+      fprintf('Q is eye(3)\n');
    end
    fprintf('Size of Q is %d x %d\n', n, n)
 
@@ -36,8 +37,10 @@ for t = 0:numTests
    end
    randTol = 10^(-(1 + round(7*rand(1))));
 
-   eval(sprintf('[x1, s1] = %s_ConjugateGradient(Q, b, x0, randItrBnd, randTol);', lastName));
-   [x2, s2] = Holder_ConjugateGradient(Q, b, x0, randItrBnd, randTol);
+   eval(sprintf('[x1, s1] = %s_ConjugateGradient(Q, b, x0, randItrBnd, randTol);', lastName))
+   x1
+   s1
+   [x2, s2] = Holder_ConjugateGradient(Q, b, x0, randItrBnd, randTol)
 
    if (s1 == s2) && (s2 == 0) && (norm(x1 - x2) < tol) && ...
       (norm(Q*x1-b) < randTol) && (norm(Q*x2 - b) < randTol)
@@ -49,6 +52,8 @@ for t = 0:numTests
       fprintf('Both codes failed to solve the system\n')
    else
       fprintf('Our codes do not agree\n')
+      fprintf('\tMy residual is %f\n', norm(Q*x2 - b))
+      fprintf('\tYour residual is %f\n', norm(Q*x1-b))
    end
    
    fprintf('Press enter to continue\n')

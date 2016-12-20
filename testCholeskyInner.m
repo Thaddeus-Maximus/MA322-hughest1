@@ -3,7 +3,7 @@ clear all
 lastName = 'Hughes'
 
 more off;
-numTests = 12;
+numTests = 100;
 tol = 10^-6;
 
 for t = 1:numTests
